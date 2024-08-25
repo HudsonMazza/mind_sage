@@ -85,4 +85,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'mindsageauth.appspot.com',
     measurementId: 'G-1DPT2MWMJ1',
   );
+
 }

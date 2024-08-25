@@ -5,22 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:mind_sage/components/my_button.dart';
 import 'package:mind_sage/components/my_textfield.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final Function()? onTap;
-   LoginPage({super.key, required this.onTap});
+   RegisterPage({super.key, required this.onTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   // Text editing controllers - controladores de edição do texto
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
-
-  // show loading circle
-   void signUserIn() async {
+  final confirmPasswordController = TextEditingController();
+  // sign user up method
+   void signUserUp() async {
 
       // show loading circle
       showDialog(
@@ -31,12 +30,15 @@ class _LoginPageState extends State<LoginPage> {
            }
          );
 
-      // try sign in
+      // try create the user
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
+        // check if password is confirmed
+        if (passwordController.text == confirmPasswordController.text) {
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: emailController.text,
+          password: passwordController.text,
       );
+        }
     }on FirebaseAuthException catch(e) {
       //pop the loading circle
       Navigator.pop(context);
@@ -139,6 +141,14 @@ class _LoginPageState extends State<LoginPage> {
               hintText: 'Insira sua Senha',
               obscureText: true,
             ),
+
+            const SizedBox(height: 10,),
+
+            MyTextField(
+              controller: confirmPasswordController,
+              hintText: 'Confirme sua Senha',
+              obscureText: true,
+            ),
             
             const SizedBox(height: 5,),
             
@@ -163,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
             
               // sign in button - botão de logar
               MyButton(
-                onTap: signUserIn,
+                onTap: signUserUp,
               ),
             
             const SizedBox(height: 25,),
@@ -225,7 +235,7 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Não tem cadastro?',
+                    Text('Já tem uma conta?',
                     style: TextStyle(
                       color: Colors.grey[700],
                       ),
@@ -233,7 +243,7 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(width: 4,),
                     GestureDetector(
                       onTap: widget.onTap,
-                      child: const Text("Cadastre-se agora!",
+                      child: const Text("Clique aqui!",
                       style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
