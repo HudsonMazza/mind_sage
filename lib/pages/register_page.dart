@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mind_sage/components/my_button.dart';
 import 'package:mind_sage/components/my_textfield.dart';
+import 'package:mind_sage/services/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -149,7 +150,6 @@ class _RegisterPageState extends State<RegisterPage> {
               hintText: 'Confirme sua Senha',
               obscureText: true,
             ),
-            
             const SizedBox(height: 5,),
             
                 // forgot password? - esqueceu sua senha?
@@ -210,19 +210,22 @@ class _RegisterPageState extends State<RegisterPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      padding: EdgeInsets.all(5.0),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 3.5,
-                            color: Colors.white,
-                          ),
-                          borderRadius: BorderRadius.circular(16),
-                        color: Colors.grey[200], //
-                      ),
-                      child: Image.asset(
-                        'lib/Images/google.png',
-                        height:60,
+                    GestureDetector(
+                        onTap: () => AuthService().signInWithGoogle(),
+                      child: Container(
+                        padding: EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 3.5,
+                              color: Colors.white,
+                            ),
+                            borderRadius: BorderRadius.circular(16),
+                          color: Colors.grey[200], //
+                        ),
+                        child: Image.asset(
+                          'lib/Images/google.png',
+                          height:60,
+                        ),
                       ),
                     ),
                   ],

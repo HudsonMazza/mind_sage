@@ -4,10 +4,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mind_sage/components/my_button.dart';
 import 'package:mind_sage/components/my_textfield.dart';
+import 'package:mind_sage/pages/home_page.dart';
+import 'package:mind_sage/services/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
-   LoginPage({super.key, required this.onTap});
+  final Function()? onTapG;
+
+   LoginPage({super.key, required this.onTap, this.onTapG});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -197,25 +201,28 @@ class _LoginPageState extends State<LoginPage> {
                ), //
               const SizedBox(height: 15,),
               // google sing in button - logar com o google
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(5.0),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 3.5,
-                            color: Colors.white,
+               Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () => AuthService().signInWithGoogle(),
+                        child: Container(
+                          padding: EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 3.5,
+                                color: Colors.white,
+                              ),
+                              borderRadius: BorderRadius.circular(16),
+                            color: Colors.grey[200], //
                           ),
-                          borderRadius: BorderRadius.circular(16),
-                        color: Colors.grey[200], //
+                          child: Image.asset(
+                            'lib/Images/google.png',
+                            height:60,
+                          ),
+                        ),
                       ),
-                      child: Image.asset(
-                        'lib/Images/google.png',
-                        height:60,
-                      ),
-                    ),
-                  ],
+                    ],
                 ),
             
               const SizedBox(height: 10,),
