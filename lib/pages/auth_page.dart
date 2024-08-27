@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:mind_sage/pages/home_page.dart';
 import 'package:mind_sage/pages/login_or_register_page.dart';
 
-
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
@@ -19,7 +18,7 @@ class AuthPage extends StatelessWidget {
           }
           // User is NOT logged in / usuário não está logado
           else {
-            return LoginOrRegisterPage();
+            return const LoginOrRegisterPage();
           }
         },
       ),

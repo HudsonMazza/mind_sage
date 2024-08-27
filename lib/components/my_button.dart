@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {
@@ -11,21 +9,21 @@ class MyButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(15),
-        margin: EdgeInsets.symmetric(horizontal: 30),
+        padding: const EdgeInsets.all(15),
+        margin: const EdgeInsets.symmetric(horizontal: 30),
         decoration: BoxDecoration(
-            color: Colors.blue[900],
-            borderRadius: BorderRadius.circular(8),
+          color: Colors.blue[900],
+          borderRadius: BorderRadius.circular(8),
         ),
-        child: Center(
-            child: Text(
-                'Entrar',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                fontSize: 19,
-              ),
+        child: const Center(
+          child: Text(
+            'Entrar',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 19,
             ),
+          ),
         ),
       ),
     );
