@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class HomePage extends StatelessWidget {
-   HomePage({super.key});
+  HomePage({super.key});
 
   final user = FirebaseAuth.instance.currentUser!;
 
@@ -16,15 +15,17 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.blue, // Define a cor da AppBar
+        backgroundColor: Colors.blue, // Define a cor da AppBar
         actions: [
-        IconButton(
-          onPressed: signUserOut,
-           icon: Icon(Icons.logout,),
-           ),
+          IconButton(
+            onPressed: signUserOut,
+            icon: const Icon(
+              Icons.logout,
+            ),
+          ),
         ],
       ),
-      body: Center(child: Text("LOGGED IN AS "+user.email!)),
+      body: Center(child: Text("LOGGED IN AS ${user.email!}")),
     );
   }
 }
